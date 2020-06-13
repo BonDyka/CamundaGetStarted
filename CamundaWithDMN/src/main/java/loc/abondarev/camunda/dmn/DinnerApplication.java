@@ -9,6 +9,8 @@ import org.camunda.bpm.engine.ProcessEngine;
 import org.camunda.bpm.engine.variable.VariableMap;
 import org.camunda.bpm.engine.variable.Variables;
 
+import java.util.List;
+
 @ProcessApplication(name = "Dinner App DMN")
 public class DinnerApplication extends ServletProcessApplication {
     //
@@ -16,13 +18,20 @@ public class DinnerApplication extends ServletProcessApplication {
     public void evaluateDecisionTable(ProcessEngine processEngine) {
         DecisionService decisionService = processEngine.getDecisionService();
 
-        VariableMap variabless = Variables.createVariables()
+        VariableMap variables = Variables.createVariables()
                 .putValue("season", "Spring")
-                .putValue("guestCount", 10);
+                .putValue("guestCount", 10)
+                .putValue("guestsWithChildren", false);
 
-        DmnDecisionTableResult dishDecisionResult = decisionService.evaluateDecisionTableByKey("dish", variabless);
+        DmnDecisionTableResult dishDecisionResult = decisionService.evaluateDecisionTableByKey("dish", variables);
         String desiredDish = dishDecisionResult.getSingleEntry();
+        System.out.println();
+        System.out.println("Desired dish: " + desiredDish);
 
-        System.out.println(desiredDish);
+        DmnDecisionTableResult beveragesDecisionResult = decisionService.evaluateDecisionTableByKey("beverages", variables);
+        List<Object> beverages = beveragesDecisionResult.collectEntries("beverages");
+
+        System.out.println("Desired beverages: " + beverages);
+        System.out.println();
     }
 }

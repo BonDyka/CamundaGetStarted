@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" id="Definitions_02k2ffg" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="4.0.0">
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" id="dinnerDecisions" name="Dinner Decisions" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="4.0.0">
   <decision id="dish" name="Dish">
     <decisionTable id="DecisionTable_10ac7g0">
       <input id="Input_1" label="Season">
@@ -84,10 +84,103 @@
       </rule>
     </decisionTable>
   </decision>
+  <decision id="beverages" name="Beverages">
+    <informationRequirement id="InformationRequirement_0uisa9f">
+      <requiredDecision href="#dish" />
+    </informationRequirement>
+    <decisionTable id="DecisionTable_1qnkgh2" hitPolicy="COLLECT">
+      <input id="InputClause_1m5eghr" label="Dish">
+        <inputExpression id="LiteralExpression_1ymhnzm" typeRef="string">
+          <text>desiredDish</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_193ktwe" label="Guests with children?">
+        <inputExpression id="LiteralExpression_0idhgve" typeRef="boolean">
+          <text>guestsWithChildren</text>
+        </inputExpression>
+      </input>
+      <output id="OutputClause_18243gs" label="Beverages" name="beverages" typeRef="string" />
+      <rule id="DecisionRule_1favs5s">
+        <description>Toug stuff</description>
+        <inputEntry id="UnaryTests_04qqt0c">
+          <text>"Spareribs"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0c9sjpb">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1ah5cy2">
+          <text>"Aecht Schlenkera Rauchbier"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1f75nnd">
+        <inputEntry id="UnaryTests_0rwp5wr">
+          <text>"Stew"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1484ehv">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_13cfo4v">
+          <text>"Guiness"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0wpbpj7">
+        <inputEntry id="UnaryTests_1bjzvtx">
+          <text>"Roastbeef"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_10gqabf">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_11q6in7">
+          <text>"Bordeaux"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1wmif7t">
+        <inputEntry id="UnaryTests_0j1o7mr">
+          <text>"Steak","Dry Aged Gourment Steak","Light Salad and nice Steak"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_10520ai">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0bbdgbr">
+          <text>"Pinot Noir"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1pzs1g8">
+        <inputEntry id="UnaryTests_1blj5ey">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1sn5tg3">
+          <text>true</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0ihk10f">
+          <text>"Apple juice"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1goe3mt">
+        <inputEntry id="UnaryTests_0585bng">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0eulciw">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1ekcecg">
+          <text>"Water"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
   <dmndi:DMNDI>
     <dmndi:DMNDiagram id="DMNDiagram_18aa9am">
       <dmndi:DMNShape id="DMNShape_0gcrffx" dmnElementRef="dish">
         <dc:Bounds height="80" width="180" x="160" y="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_1t3qys3" dmnElementRef="InformationRequirement_0uisa9f">
+        <di:waypoint x="340" y="120" />
+        <di:waypoint x="480" y="120" />
+        <di:waypoint x="500" y="120" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_1wyyzfs" dmnElementRef="beverages">
+        <dc:Bounds height="80" width="180" x="500" y="80" />
       </dmndi:DMNShape>
     </dmndi:DMNDiagram>
   </dmndi:DMNDI>
