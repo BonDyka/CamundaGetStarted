@@ -3,8 +3,10 @@ package loc.abondarev.camunda.spring;
 import org.camunda.bpm.engine.*;
 import org.camunda.bpm.engine.spring.ProcessEngineFactoryBean;
 import org.camunda.bpm.engine.spring.SpringProcessEngineConfiguration;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.Resource;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.transaction.PlatformTransactionManager;
@@ -29,7 +31,11 @@ public class LoanApplicationContext {
     }
 
     @Bean
-    public SpringProcessEngineConfiguration engineConfiguration(DataSource dataSource, PlatformTransactionManager transactionManager) {
+    public SpringProcessEngineConfiguration engineConfiguration(
+            DataSource dataSource,
+            PlatformTransactionManager transactionManager,
+            @Value("classpath*:*.bpmn")Resource[] resources
+    ) {
         SpringProcessEngineConfiguration configuration = new SpringProcessEngineConfiguration();
 
         configuration.setProcessEngineName("engine");
@@ -37,6 +43,7 @@ public class LoanApplicationContext {
         configuration.setTransactionManager(transactionManager);
         configuration.setDatabaseSchemaUpdate("true");
         configuration.setJobExecutorActivate(false);
+        configuration.setDeploymentResources(resources);
 
         return configuration;
     }
@@ -76,5 +83,15 @@ public class LoanApplicationContext {
     @Bean
     public ManagementService managementService(ProcessEngine processEngine) {
         return processEngine.getManagementService();
+    }
+
+    @Bean
+    public Starter starter() {
+        return new Starter();
+    }
+
+    @Bean
+    public CalculateInterestService calculateInterestService() {
+        return new CalculateInterestService();
     }
 }
