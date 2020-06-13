@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" id="Definitions_02k2ffg" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="4.0.0">
+  <decision id="dish" name="Dish">
+    <decisionTable id="DecisionTable_10ac7g0">
+      <input id="Input_1" label="Season">
+        <inputExpression id="InputExpression_1" typeRef="string">
+          <text>season</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_0xyimox" label="How many guests">
+        <inputExpression id="LiteralExpression_0bvny44" typeRef="integer">
+          <text>guestCount</text>
+        </inputExpression>
+      </input>
+      <output id="Output_1" label="Dish" name="desiredDish" typeRef="string" />
+      <rule id="DecisionRule_07nad01">
+        <inputEntry id="UnaryTests_07r3nnh">
+          <text>"Fall"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1j1spqg">
+          <text>&lt;= 8</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1aifkzi">
+          <text>"Spareribs"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_187zg09">
+        <inputEntry id="UnaryTests_04mswsb">
+          <text>"Winter"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1sfbib9">
+          <text>&lt;= 8</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0uhh1mi">
+          <text>"Roasbeef"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_15ss4sr">
+        <inputEntry id="UnaryTests_0uz7v4k">
+          <text>"Spring"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1i4jgx9">
+          <text>&lt;= 4</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0i96jlo">
+          <text>"Dry Aged Gourment Steak"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0d2d6ft">
+        <description>Save money</description>
+        <inputEntry id="UnaryTests_1oju9kn">
+          <text>"Spring"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0pj7avd">
+          <text>[5..8]</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0nn2ten">
+          <text>"Steak"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0jv2t71">
+        <description>Less effort</description>
+        <inputEntry id="UnaryTests_0a0pt2u">
+          <text>"Fall", "Winter", "Spring"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_10wc1o7">
+          <text>&gt; 8</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1mqevav">
+          <text>"Stew"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0qw0e6r">
+        <description>Hey, why not?</description>
+        <inputEntry id="UnaryTests_0xcd5vk">
+          <text>"Summer"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1veiuf1">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0t53agx">
+          <text>"Light Salad and nice Steak"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram id="DMNDiagram_18aa9am">
+      <dmndi:DMNShape id="DMNShape_0gcrffx" dmnElementRef="dish">
+        <dc:Bounds height="80" width="180" x="160" y="80" />
+      </dmndi:DMNShape>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>
