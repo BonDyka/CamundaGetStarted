@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_092voqb" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.0.0">
+  <bpmn:process id="loanApproval" name="Loan Approoval" isExecutable="true">
+    <bpmn:startEvent id="loanRequestReceived" name="Loan Request Received">
+      <bpmn:outgoing>Flow_1ii6rt6</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_1ii6rt6" sourceRef="loanRequestReceived" targetRef="checker" />
+    <bpmn:userTask id="checker" name="Check the request">
+      <bpmn:incoming>Flow_1ii6rt6</bpmn:incoming>
+      <bpmn:outgoing>Flow_0kqb0s6</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:endEvent id="loanRequestProcessed" name="Loan Request Processed">
+      <bpmn:incoming>Flow_0kqb0s6</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_0kqb0s6" sourceRef="checker" targetRef="loanRequestProcessed" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="loanApproval">
+      <bpmndi:BPMNEdge id="Flow_1ii6rt6_di" bpmnElement="Flow_1ii6rt6">
+        <di:waypoint x="215" y="117" />
+        <di:waypoint x="360" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0kqb0s6_di" bpmnElement="Flow_0kqb0s6">
+        <di:waypoint x="460" y="117" />
+        <di:waypoint x="612" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="loanRequestReceived">
+        <dc:Bounds x="179" y="99" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="164" y="142" width="70" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0s27327_di" bpmnElement="checker">
+        <dc:Bounds x="360" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0w56uj5_di" bpmnElement="loanRequestProcessed">
+        <dc:Bounds x="612" y="99" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="597" y="142" width="70" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
