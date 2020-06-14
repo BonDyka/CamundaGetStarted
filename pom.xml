@@ -13,6 +13,7 @@
         <module>CamundaWithDMN</module>
         <module>CamundaWithSpring</module>
         <module>CamundaWithSpringBoot</module>
+        <module>JavaprocessApplication</module>
     </modules>
 
     <properties>
