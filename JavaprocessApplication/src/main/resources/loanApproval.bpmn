@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_1fh58d6" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.0.0">
   <bpmn:process id="approve-loan" name="Loan Approval" isExecutable="true">
-    <bpmn:startEvent id="loanRequest" name="Loan Request Received">
+    <bpmn:startEvent id="loanRequest" name="Loan Request Received" camunda:formKey="embedded:app:forms/request-loan.html">
       <bpmn:outgoing>Flow_1awqxac</bpmn:outgoing>
     </bpmn:startEvent>
     <bpmn:sequenceFlow id="Flow_1awqxac" sourceRef="loanRequest" targetRef="approveLoan" />
-    <bpmn:userTask id="approveLoan" name="Approve Loan" camunda:assignee="john">
+    <bpmn:userTask id="approveLoan" name="Approve Loan" camunda:formKey="embedded:app:forms/approve-loan.html" camunda:assignee="john">
       <bpmn:incoming>Flow_1awqxac</bpmn:incoming>
       <bpmn:outgoing>Flow_007of0c</bpmn:outgoing>
     </bpmn:userTask>
